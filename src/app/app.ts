@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Task } from './task';
 
@@ -6,7 +6,7 @@ import { Task } from './task';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrl: './app.css'
 })
 export class App {
   protected readonly title = 'Gestor de tareas';
@@ -16,8 +16,6 @@ export class App {
     { id: 2, titulo: 'Construir un proyecto nuevo', completada: false },
     { id: 3, titulo: 'Dominar signals', completada: true },
   ]);
-
-  pendientes = computed(() => this.tareas().filter((t) => !t.completada).length);
 
   agregar(titulo: string): void {
     const limpio = titulo.trim();
@@ -31,13 +29,15 @@ export class App {
     ]);
   }
 
-  eliminar(id: number): void {
-    this.tareas.update((lista) => lista.filter((t) => t.id !== id));
-  }
-
   toggle(id: number): void {
     this.tareas.update((lista) =>
       lista.map((t) => (t.id === id ? { ...t, completada: !t.completada } : t)),
+    );
+  }
+
+  eliminar(id: number): void {
+    this.tareas.update(lista =>
+      lista.filter(tarea => tarea.id !== id)
     );
   }
 }

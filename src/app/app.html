@@ -1,6 +1,5 @@
 <main>
   <h1>{{ title }}</h1>
-  <p class="contador">Pendientes: {{ pendientes() }}</p>
 
   <div class="nueva-tarea">
     <input
@@ -18,9 +17,9 @@
       <li (click)="toggle(tarea.id)" [class.hecha]="tarea.completada">
         {{ tarea.titulo }}
         @if (tarea.completada) {
-          <span>✅</span>
+          <span>Ok</span>
         }
-        <button class="eliminar" (click)="eliminar(tarea.id); $event.stopPropagation()">🗑️</button>
+        <button (click)="eliminar(tarea.id)">🗑️</button>
       </li>
     } @empty {
       <li>No hay tareas. Agrega una!!</li>
