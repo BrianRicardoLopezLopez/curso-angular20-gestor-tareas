@@ -10,6 +10,7 @@ export class TaskStore {
   tareas = signal<Task[]>(this.cargar());
 
   pendientes = computed(() => this.tareas().filter((t) => !t.completada).length);
+  completadas = computed(() => this.tareas().filter((t) => t.completada).length);
 
   constructor() {
     effect(() => {
@@ -27,6 +28,10 @@ export class TaskStore {
       ...lista,
       { id: Date.now(), titulo: limpio, completada: false },
     ]);
+  }
+
+  eliminarTodo() {
+    this.tareas.update(tareas => tareas.filter(tarea => !tarea.completada))
   }
 
   eliminar(id: number): void {

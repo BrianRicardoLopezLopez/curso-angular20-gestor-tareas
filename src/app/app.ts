@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Task } from './features/tasks/task';
 import { TaskStore } from './features/tasks/task-store';
 
 @Component({
@@ -10,7 +9,7 @@ import { TaskStore } from './features/tasks/task-store';
   styleUrl: './app.css'
 })
 export class App {
-[x: string]: any;
+  [x: string]: any;
   protected readonly title = 'Gestor de tareas';
 
   store = inject(TaskStore);
