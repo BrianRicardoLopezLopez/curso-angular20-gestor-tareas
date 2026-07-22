@@ -30,10 +30,30 @@ export class TaskStore {
     ]);
   }
 
-  eliminarTodo() {
-    this.tareas.update(tareas => tareas.filter(tarea => !tarea.completada))
-  }
+todasCompletadas = computed(() => {
+  // Obtiene la lista actual de tareas del signal.
+  const tareas = this.tareas();
 
+  // Comprueba dos condiciones:
+  // 1. Que exista al menos una tarea en la lista.
+  // 2. Que todas las tareas tengan completada en true usando every().
+  // Si ambas condiciones se cumplen, devuelve true; de lo contrario devuelve false.
+  return tareas.length > 0 && tareas.every(t => t.completada);
+});
+
+
+eliminarTodo(): void {
+  // Guarda las tareas actuales en una constante.
+  const tareas = this.tareas();
+
+  // Comprueba que el arreglo no esté vacío.
+  // every() devuelve true solo si todas las tareas están completadas.
+  if (tareas.length > 0 && tareas.every(t => t.completada)) {
+
+    // Reemplaza el contenido del signal por un arreglo vacío.
+    this.tareas.set([]);
+  }
+}
   eliminar(id: number): void {
     this.tareas.update((lista) => lista.filter((t) => t.id !== id));
   }

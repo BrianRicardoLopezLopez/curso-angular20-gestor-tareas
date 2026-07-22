@@ -13,9 +13,10 @@
       (keyup.enter)="store.agregar(inputTarea.value); inputTarea.value = ''" />
 
     <button (click)="store.agregar(inputTarea.value); inputTarea.value = ''">Agregar</button>
-    <button class="btn-limpiar" (click)="store.eliminarTodo()" [disabled]="!store.completadas()">
+    <button class="btn-limpiar" (click)="store.eliminarTodo()" [disabled]="!store.todasCompletadas()">
       Limpiar completadas
     </button>
+
   </div>
 
   <ul>
